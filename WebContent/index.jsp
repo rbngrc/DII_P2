@@ -14,14 +14,14 @@
                 <button type="button" class="toggle-btn" onclick="save()">Anadir</button>
                 <button type="button" class="toggle-btn" onclick="show()">Agenda</button>
             </div>
-            <form action="" class="input-group" id="save">
+            <form action="<%=request.getContextPath()%>/Controlador" method="post" class="input-group" id="save">
                 <input type="text" class="input-field" placeholder="Nombre" required>
                 <input type="text" class="input-field" placeholder="Primer apellido" required>
                 <input type="text" class="input-field" placeholder="Segundo apellido" required>
                 <input type="text" class="input-field" placeholder="Email" required>
                 <input type="text" class="input-field" placeholder="Telefono" required>
-                <input type="text" class="input-field" placeholder="Comentarios" required>
-                <button type="submit" class="submit-btn">Guardar</button>
+                <input type="text" class="input-field" placeholder="Comentarios">
+                <input type="submit" class="submit-btn" value="Guardar"/>
             </form>
             <form action="" class="input-group" id="show">
                 <input type="text" class="input-field" placeholder="Nombre" required>
@@ -49,7 +49,6 @@
                 y.style.left = "450px";
                 z.style.left = "0";
             }
-
         </script>
 
     </body>
