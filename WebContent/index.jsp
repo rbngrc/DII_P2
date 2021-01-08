@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="dam2.dii.p2.Contacto"%>
+	
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,45 +14,51 @@
         <div class="form-box">
             <div class="button-box">
                 <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="save()">Anadir</button>
-                <button type="button" class="toggle-btn" onclick="show()">Agenda</button>
+                <h4 class="toggle-btn">Mi agenda</h4>
             </div>
-            <form action="<%=request.getContextPath()%>/Controlador" method="post" class="input-group" id="save">
-                <input type="text" class="input-field" placeholder="Nombre" required>
-                <input type="text" class="input-field" placeholder="Primer apellido" required>
-                <input type="text" class="input-field" placeholder="Segundo apellido" required>
-                <input type="text" class="input-field" placeholder="Email" required>
-                <input type="text" class="input-field" placeholder="Telefono" required>
-                <input type="text" class="input-field" placeholder="Comentarios">
-                <input type="submit" class="submit-btn" value="Guardar"/>
-            </form>
-            <form action="" class="input-group" id="show">
-                <input type="text" class="input-field" placeholder="Nombre" required>
-                <input type="text" class="input-field" placeholder="Primer apellido" required>
-                <input type="text" class="input-field" placeholder="Segundo apellido" required>
-                <input type="text" class="input-field" placeholder="Email" required>
-                <input type="text" class="input-field" placeholder="Telefono" required>
-                <input type="text" class="input-field" placeholder="Comentarios" required>
-            </form>
+            <div class="input-group" id="save">
+                <form action="<%=request.getContextPath()%>/Controlador" method="post">
+                    <input type="text" class="input-field" name="nombre" placeholder="Nombre" required>
+                    <input type="text" class="input-field" name="apellido1" placeholder="Primer apellido" required>
+                    <input type="text" class="input-field" name="apellido2" placeholder="Segundo apellido" required>
+                    <input type="text" class="input-field" name="email" placeholder="Email" required>
+                    <input type="text" class="input-field" name="telefono" placeholder="Telefono" required>
+                    <input type="text" class="input-field" name="comentarios" placeholder="Comentarios">
+                    <input type="submit" class="submit-btn" value="Guardar"/>
+                </form>
+                <p>${error}</p>
+            </div>
+            <div class="table-group" id="show">
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Comentarios</th>
+                    </tr>
+                    
+                    <% 
+                    ArrayList<Contacto> lista_contactos = (ArrayList<Contacto>) request.getAttribute("listado");
+                    if(lista_contactos != null){
+                    	for(int i=0; i<lista_contactos.size(); i++){ 
+                    %>
+                    <tr>
+	                    <td><%= lista_contactos.get(i).getNombre() %></td> 
+	                   	<td><%= lista_contactos.get(i).getApellido1() %></td>
+	                   	<td><%= lista_contactos.get(i).getApellido2() %></td>
+	                   	<td><%= lista_contactos.get(i).getEmail() %></td>
+	                   	<td><%= lista_contactos.get(i).getTelefono() %></td>
+	                   	<td><%= lista_contactos.get(i).getComentarios() %></td>
+                   	</tr>
+                    <%	
+                    	}
+                    }
+                    %>
+                    
+                </table>
+            </div>
         </div>
-
-        <script>
-            var x = document.getElementById("save");
-            var y = document.getElementById("show");
-            var z = document.getElementById("btn");
-
-            function show(){
-                x.style.left = "-400px";
-                y.style.left = "50px";
-                z.style.left = "110px";
-            }
-
-            function save(){
-                x.style.left = "50px";
-                y.style.left = "450px";
-                z.style.left = "0";
-            }
-        </script>
-
     </body>
 </html>

@@ -13,13 +13,12 @@ body{
 }
 
 .form-box{
-    width: 400px;
+    width: 1200px;
     height: 600px;
     position: relative;
     margin: 6% auto;
     background: #fff;
     padding: 5px;
-    overflow: hidden;
 }
 
 .button-box{
@@ -32,28 +31,58 @@ body{
 
 .toggle-btn{
     padding: 10px 30px;
-    cursor: pointer;
     background: transparent;
     border: 0;
     outline: none;
     position: relative;
+    text-align: center;
+}
+
+p{
+	position: relative;
+    color: #a95c10;
 }
 
 #btn{
-    top: 0;
-    left: 0;
     position: absolute;
-    width: 110px;
+    width: 100%;
     height: 100%;
     background: linear-gradient(to right, #a95c10, #e99f34);
     border-radius: 30px;
     transition: .5s;
 }
+
 .input-group{
     top: 180px;
     position: absolute;
     width: 280px;
     transition: .5s;
+}
+
+.table-group{
+    top: 180px;
+    position: absolute;
+    width: 700px;
+    height: 350px;
+    transition: .5s;
+    overflow: scroll;
+}
+
+table{
+    width: 100%;
+}
+
+table, th, td{
+    border: 1px solid #a95c10;
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: left;
+}
+
+th{
+    position: sticky;
+    background: #e99f34;
+    top: 0px;
 }
 
 .input-field{
