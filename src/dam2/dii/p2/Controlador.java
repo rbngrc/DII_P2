@@ -50,25 +50,31 @@ public class Controlador extends HttpServlet {
 	
 	private ArrayList<Contacto> guardarContacto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Contacto> preLista = new ArrayList<Contacto>();
-		
 		String nombre = request.getParameter("nombre");
 		String apellido1 = request.getParameter("apellido1");
 		String apellido2 = request.getParameter("apellido2");
 		String email = request.getParameter("email");
 		String telefono = request.getParameter("telefono");
 		String comentarios = request.getParameter("comentarios");
+		boolean existe = false;
 
 		Contacto contacto = new Contacto(nombre, apellido1, apellido2, email, telefono, comentarios);
 		
-		preLista.add(contacto);
+		listaContactos.add(contacto);
 		
-		for (Contacto cont : preLista) {
-			if (((Contacto) cont).getEmail().equals(email)) {
-				   request.setAttribute("error", "Ya existe un usuario con ese correo");
-				   mostrarContacto(request, response, listaContactos);
-			} else {
-				listaContactos.add(contacto);
+		for (int i = 0; i < listaContactos.size(); i++) {
+			existe = false;
+			for (int j = 0; !existe && j < i; j++) {
+				Contacto cont = listaContactos.get(j);
+				String contenido = cont.getEmail();
+				if (contenido.equals(email)) {
+					   request.setAttribute("error", "Ya existe un usuario con ese email");
+					   listaContactos.remove( listaContactos.size() - 1);
+					   mostrarContacto(request, response, listaContactos);
+					   existe = true;
+				} 
+			}
+			if (!existe){
 				mostrarContacto(request, response, listaContactos);
 				request.setAttribute("error", "");
 			}
