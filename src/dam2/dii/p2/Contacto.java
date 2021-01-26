@@ -7,7 +7,7 @@ public class Contacto {
 	String apellido2;
 	String email;
 	String telefono;
-	String Comentarios;
+	String comentarios;
 
 	public Contacto(String nombre, String apellido1, String apellido2, String email, String telefono,
 			String comentarios) {
@@ -17,7 +17,7 @@ public class Contacto {
 		this.apellido2 = apellido2;
 		this.email = email;
 		this.telefono = telefono;
-		Comentarios = comentarios;
+		this.comentarios = comentarios;
 	}
 
 	public String getNombre() {
@@ -61,11 +61,11 @@ public class Contacto {
 	}
 
 	public String getComentarios() {
-		return Comentarios;
+		return comentarios;
 	}
 
 	public void setComentarios(String comentarios) {
-		Comentarios = comentarios;
+		this.comentarios = comentarios;
 	}
 
 }
